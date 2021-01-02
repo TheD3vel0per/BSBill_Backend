@@ -3,11 +3,15 @@ from flask import Flask, jsonify
 from BillAnalyser import BillAnalyser
 from DbConnect import DbConnect
 from flask import request
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 dbConnection = DbConnect()
 
 @app.route('/api/bill', methods=['GET', 'POST'])
+@cross_origin()
 def get_bill():
     url = request.args.get('url')
     if dbConnection.is_bill_exist(url):
