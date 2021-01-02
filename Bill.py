@@ -25,12 +25,23 @@ class Bill:
     def __init__(self):
         return
 
+
+    def __iter__(self):
+        yield 'billName', self.billName
+        yield 'billNumber', self.billNumber
+        yield 'billUrl', self.billUrl
+        yield 'info', self.info
+
     def from_dict(self, d):
         for a, b in d.items():
             if isinstance(b, (list, tuple)):
                setattr(self, a, [Bill(x) if isinstance(x, dict) else x for x in b])
             else:
                setattr(self, a, Bill(b) if isinstance(b, dict) else b)
+
+    def set_id(self, id: str) -> None:
+        self.id = id
+        return None
 
 
 

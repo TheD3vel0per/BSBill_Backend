@@ -17,11 +17,12 @@ class BillAnalyser:
     def __init__(self, url):
         # bill object to store the info in
         self.bill = Bill()
+        self.bill.billUrl = url
 
         # Get the bill text
         self.url = url
         self.scraper = WebScraper()
-        self.bill_text = self.scraper.get_bill_text_from_url(url) + ". and a cost of cancellation for $100 must be paid before January 1st 2021 by Textman Inc. or Walmart. Interest is 40% ontop of that initial sum" # bill text cleaned
+        self.bill_text = self.scraper.get_bill_text_from_url(url)
 
         # Get the 5 most common words
         #self.mostCommonWords(self.bill_text)

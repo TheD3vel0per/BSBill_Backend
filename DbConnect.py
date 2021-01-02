@@ -14,10 +14,12 @@ class DbConnect:
     def is_bill_exist(self, url: str) -> bool:
         """Finds the bill with the given url and returns whether it exists,
            returns false if the bill does not exist"""
-        return self.__db.collection('Bills').where("billUrl", "==", url).get().len() == 0
+        return len(self.__db.collection('Bills').where("billUrl", "==", url).get()) == 0
 
     def add_bill(self, bill: Bill) -> None:
         """Adds the given bill to the database"""
-        bill['_id'] = self.__db.collection('Bills').document().id
-        self.__db.collection('Bills').document('one').set(bill)
+        bill = dict(bill)
+        id = self.__db.collection('Bills').document().id
+        bill['_id'] = id
+        self.__db.collection('Bills').document(id).set(bill)
         return None
