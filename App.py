@@ -1,13 +1,23 @@
+from os import environ
+from flask import Flask, jsonify
 from BillAnalyser import BillAnalyser
 from DbConnect import DbConnect
+from flask import request
 
-if __name__ == "__main__":
-    url = "https://www.congress.gov/congressional-record/2019/10/29/house-section/article/H8588-3"
-    b = BillAnalyser(url)
-    b.getBillSummary()
+app = Flask(__name__)
+dbConnection = DbConnect()
 
-    print(b.bill.info['dates'])
+@app.route('/')
+def get_home():
+    return "The server is up! :D"
 
-# if __name__ == "__main__":
-#     dbConnection: DbConnect = DbConnect()
-#     dbConnection.get_bill('best1')
+@app.route('/api/bill', methods=['POST'])
+def get_bill():
+    url = request.args.get('url')
+    if dbConnection.is_bill_exist(url):
+        billAnalyser = BillAnalyser(url)
+        bill = billAnalyser.getBillSummary()
+        dbConnection.add_bill(bill)
+    return jsonify(bill)
+
+app.run(host="0.0.0.0", port=5000)
