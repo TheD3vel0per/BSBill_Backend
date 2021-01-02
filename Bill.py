@@ -22,7 +22,10 @@ class Bill:
         "regulations": []   # e.g [('Code of Federal Regulations', '123 CFR 456')]
     }
 
-    def __init__(self, d):
+    def __init__(self):
+        return
+
+    def from_dict(self, d):
         for a, b in d.items():
             if isinstance(b, (list, tuple)):
                setattr(self, a, [Bill(x) if isinstance(x, dict) else x for x in b])

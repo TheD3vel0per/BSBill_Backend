@@ -11,11 +11,13 @@ class DbConnect:
         self.__db = firebase_admin.firestore.client()
         return
 
-    def get_bill(self, bill_id: str) -> Bill:
-        """Gets the bill with the given id and returns it"""
-        return Bill(self.__db.collection('Bills').document(bill_id).get().to_dict())
+    def is_bill_exist(self, url: str) -> bool:
+        """Finds the bill with the given url and returns whether it exists,
+           returns false if the bill does not exist"""
+        return self.__db.collection('Bills').where("billUrl", "==", url).get().len() == 0
 
     def add_bill(self, bill: Bill) -> None:
         """Adds the given bill to the database"""
+        bill['_id'] = self.__db.collection('Bills').document().id
         self.__db.collection('Bills').document('one').set(bill)
         return None

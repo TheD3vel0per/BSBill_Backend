@@ -1,7 +1,13 @@
+from BillAnalyser import BillAnalyser
 from DbConnect import DbConnect
-from Bill import Bill
 
 if __name__ == "__main__":
-    dbConnection: DbConnect = DbConnect()
-    bill: Bill = dbConnection.get_bill('bill1')
-    print(dir(bill))
+    url = "https://www.congress.gov/congressional-record/2019/10/29/house-section/article/H8588-3"
+    b = BillAnalyser(url)
+    b.getBillSummary()
+
+    print(b.bill.info['dates'])
+
+# if __name__ == "__main__":
+#     dbConnection: DbConnect = DbConnect()
+#     dbConnection.get_bill('best1')

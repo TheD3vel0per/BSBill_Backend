@@ -17,8 +17,7 @@ class HttpServer:
 
     @app.route('/api/bill/<url>')
     def get_bill(self, url):
-        bill = self.dbConnection.get_bill(url)
-        if bill == None:
-            #bill = _ # request a proper bill
+        if self.dbConnection.is_bill_exist(url):
+            bill = """BillAnalyser(WebScraper(url))""" # request a proper bill
             self.dbConnection.add_bill(bill)
         return jsonify(bill) # request a proper bill
