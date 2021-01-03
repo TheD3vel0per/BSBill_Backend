@@ -29,6 +29,7 @@ class WebScraper:
     def clean(self, SoupObject):
         clean_str = str(SoupObject).replace("<div>","").replace("</div>", "")
         clean_str = clean_str.replace("<span>","").replace("</span>", "")
+        clean_str = clean_str.replace('<span class="quiet">',"")
         clean_str = clean_str.replace("<a>","").replace("</a>", "")
         clean_str = clean_str.replace("<pre>","").replace("</pre>", "")
         clean_str = clean_str.replace("<h1>","").replace("</h1>", "")
@@ -37,6 +38,7 @@ class WebScraper:
         clean_str = clean_str.replace("<h4>","").replace("</h4>", "")
         clean_str = clean_str.replace("<h5>","").replace("</h5>", "")
         clean_str = clean_str.replace("<h6>","").replace("</h6>", "")
+        clean_str = clean_str.replace("<br>","").replace("</br>", "").replace("<br/>", "")
         return clean_str
 
     #function to extract the text content of the bill
