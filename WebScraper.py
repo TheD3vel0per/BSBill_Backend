@@ -8,7 +8,8 @@ class WebScraper:
     """
     Class to scrap from either a Canadian or American website and then return the text to analyze
     """
-    def __init__(self):
+    def __init__(self, url):
+        self.url = url
         self.us_text_class = "txt-box"   # US site's class for the text to extract in the html
         self.can_text_class = "publication-container-content"         # Canada's site's class for the text to extract in the html
 
@@ -39,8 +40,8 @@ class WebScraper:
         return clean_str
 
     #function to extract the text content of the bill
-    def get_bill_text_from_url(self, url):
-
+    def get_bill_text_from_url(self):
+        url = self.url
         # Check url to see if from US or Canadian site
         self.country_code = self.parse_url(url) 
         
@@ -58,6 +59,15 @@ class WebScraper:
             self.text = ""
 
         return self.clean(self.text)
+
+    def get_bill_name(self):
+        if self.country_code == "US":
+            return self.html.find_next("h1")
+        elif self.country_code == "CAN":
+            return self.html.find_next("h1", class_="page-title")
+        else:
+            print("Country code invalid.")
+            return ""
 
     
 

@@ -10,6 +10,10 @@ class Bill:
     billName = ""
     billNumber = ""
     billUrl = ""
+    billVotes = {
+        "bs": 0,
+        "notbs": 0
+    }
 
     info = {
         "dates": [],        # e.g  ["2020-03-05", "2017-10-01"]
@@ -30,6 +34,7 @@ class Bill:
         yield 'billName', self.billName
         yield 'billNumber', self.billNumber
         yield 'billUrl', self.billUrl
+        yield 'billVotes', self.billVotes
         yield 'info', self.info
 
     def from_dict(self, d):

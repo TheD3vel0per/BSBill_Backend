@@ -21,8 +21,9 @@ class BillAnalyser:
 
         # Get the bill text
         self.url = url
-        self.scraper = WebScraper()
-        self.bill_text = self.scraper.get_bill_text_from_url(url)
+        self.scraper = WebScraper(url)
+        self.bill.billName = self.scraper.get_bill_name()
+        self.bill_text = self.scraper.get_bill_text_from_url()
 
         # Get the 5 most common words
         #self.mostCommonWords(self.bill_text)
