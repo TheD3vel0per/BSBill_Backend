@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9f8b8bb-641e-46de-be71-b6a2bb2d5afe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Bill.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bill.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebScraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebScraper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.py" beforeDir="false" afterPath="$PROJECT_DIR$/App.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

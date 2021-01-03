@@ -61,13 +61,15 @@ class WebScraper:
         return self.clean(self.text)
 
     def get_bill_name(self):
+        name = ""
         if self.country_code == "US":
-            return self.html.find_next("h1")
+            name = self.html.find_all("h2")[4]
         elif self.country_code == "CAN":
-            return self.html.find_next("h1", class_="page-title")
+            name = self.html.find_all("h1", class_="page-title")[0]
         else:
             print("Country code invalid.")
             return ""
+        return self.clean(name)
 
     
 

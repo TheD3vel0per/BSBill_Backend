@@ -25,4 +25,5 @@ def get_bill():
 def get_home():
     return "The server is up! :D"
 
+# If Docker crashes try commenting/uncommenting the line below
 app.run(host="0.0.0.0", port=8080)
